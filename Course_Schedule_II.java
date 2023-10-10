@@ -2,7 +2,7 @@ import java.util.*;
 
 class Solution {
     class Graph{
-        HashMap<Integer, ArrayList<Integer>> adj=new HashMap<Integer,ArrayList<Integer>>();
+        HashMap<Integer,ArrayList<Integer>> adj=new HashMap<Integer,ArrayList<Integer>>();
         void addEdge(int u,int v){
             if(adj.containsKey(u)){
                 ArrayList<Integer> list=adj.get(u);
@@ -21,7 +21,7 @@ class Solution {
                 System.out.println(key+" : "+values);
             }
         }
-        void dfs(int i, boolean[] visited, Stack<Integer> st){
+        void dfs(int i,boolean[] visited,Stack<Integer> st){
             visited[i]=true;
             if(adj.containsKey(i)){
                 ArrayList<Integer> list=adj.get(i);
@@ -44,43 +44,37 @@ class Solution {
             }
             return st;
         }
-        boolean isCyclicUtil(int i, boolean[] visited,
-                             boolean[] recStack)
-        {
-
-            if (recStack[i])
-                return true;
-
-            if (visited[i])
-                return false;
-
-            visited[i] = true;
-
-            recStack[i] = true;
-            List<Integer> children = adj.get(i);
-            if(children!=null)
-            {
-                for (Integer c: children)
-                    if (isCyclicUtil(c, visited, recStack))
+        boolean isCycleDFS(int i,boolean[] visited, boolean[] path){
+            ArrayList<Integer> temp=adj.get(i);
+            if(temp!=null){
+                for(Integer num:temp){
+                    if(visited[num]&&path[num]){
                         return true;
+                    }
+                    else if(!visited[num]){
+                        visited[num]=true;
+                        path[num]=true;
+                        if(isCycleDFS(num,visited,path)){
+                            return true;
+                        }
+                    }
+                }
             }
-
-            recStack[i] = false;
-
+            path[i]=false;
             return false;
         }
         boolean isCyclic(int numCourses) {
-            // Mark all the vertices as not visited and
-            // not part of recursion stack
             boolean[] visited = new boolean[numCourses];
-            boolean[] recStack = new boolean[numCourses];
-
-            // Call the recursive helper function to
-            // detect cycle in different DFS trees
-            for (int i = 0; i < numCourses; i++)
-                if (isCyclicUtil(i, visited, recStack))
-                    return true;
-
+            boolean[] path = new boolean[numCourses];
+            for (int i = 0; i < numCourses; i++){
+                if(!visited[i]){
+                    visited[i]=true;
+                    path[i]=true;
+                    if(isCycleDFS(i,visited,path)){
+                        return true;
+                    }
+                }
+            }
             return false;
         }
     }
@@ -104,6 +98,54 @@ class Solution {
             array[i] = stack.pop();
         }
         return array;
+
+    }
+}
+
+
+
+// second approach
+
+
+
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        ArrayList<ArrayList<Integer>>adj=new ArrayList<>();
+        for(int i=0;i<numCourses;i++){
+            adj.add(i,new ArrayList<Integer>());
+        }
+        int [] indegree= new int[numCourses];
+        Queue<Integer> qu=new LinkedList<>();
+        for(int i=0;i<prerequisites.length;i++){
+            indegree[prerequisites[i][0]]++;
+            // if(adj.contains(prerequisites[i][1])){
+            //     // ArrayList<Integer>temp=adj.get(prerequisites[i][1]);
+            //     adj[prerequisites[i][1]].add(prerequisites[i][0]);
+            // }else{
+            //     ArrayList<Integer>temp=new ArrayList<>();
+            //     temp.add(prerequisites[i][0]);
+            adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
+            // }
+        }
+        for(int i=0;i<numCourses;i++){
+            if(indegree[i]==0){
+                qu.add(i);
+            }
+        }
+        Stack<Integer> st=new Stack<>();
+        int[] ans=new int[numCourses];
+        int i=0;
+        while(!qu.isEmpty()){
+            int temp=qu.poll();
+            ans[i++]=temp;
+            for(Integer num:adj.get(temp)){
+                indegree[num]--;
+                if(indegree[num]==0){
+                    qu.add(num);
+                }
+            }
+        }
+        return (i==numCourses)?ans:new int[0];
 
     }
 }
