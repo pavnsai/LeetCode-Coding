@@ -42,3 +42,29 @@ class Solution {
         return ans;
     }
 }
+
+
+
+//Second Approach
+
+
+class Solution {
+    public int longestEqualSubarray(List<Integer> nums, int k) {
+        int maxFreq = 0;
+
+        int i = 0, j = 0, len = nums.size();
+        int[] count = new int[ len +1 ];
+        while (j < len) {
+            int currElem = nums.get(j);
+            count[currElem]++;
+            maxFreq = Math.max(maxFreq, count[currElem]);
+            if (j - i + 1 - maxFreq > k) {
+                count[nums.get(i)]--;
+                i++;
+            }
+            j++;
+        }
+
+        return maxFreq;
+    }
+}
