@@ -1,4 +1,4 @@
- class Solution {
+ class Solution14 {
      public String mergeAlternately(String word1, String word2) {
          int length1=word1.length(),length2=word2.length(),i=0,mini=0,index=0;
          String ans="";
@@ -30,7 +30,7 @@
 
  // Second Approach
 
-class Solution {
+class Solution18 {
     public String mergeAlternately(String word1, String word2) {
         int n=Math.min(word1.length(),word2.length());
         StringBuilder sb=new StringBuilder();

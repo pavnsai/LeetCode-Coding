@@ -1,4 +1,4 @@
-class Solution {
+class Solution7 {
     public boolean isPossible(String str1,String str2){
         String temp=str2;
         int n=str1.length();

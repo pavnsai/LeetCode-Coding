@@ -1,4 +1,4 @@
-class Solution {
+class Solution6 {
     public int totalFruit(int[] fruits) {
         int a=-1,b=-1,ans=Integer.MIN_VALUE,acount=0,bcount=0,start=0,counter=0,n=fruits.length;
         while(counter<n){

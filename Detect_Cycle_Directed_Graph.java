@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Solution {
+class Solution4 {
     // Function to detect cycle in a directed graph.
     public boolean dfs(int i, ArrayList<ArrayList<Integer>> adj, boolean[] visited,
                        boolean[] path, int parent){

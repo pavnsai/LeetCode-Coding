@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Solution1 {
     class Graph{
         HashMap<Integer,ArrayList<Integer>> adj=new HashMap<Integer,ArrayList<Integer>>();
         void addEdge(int u,int v){
@@ -108,7 +108,7 @@ class Solution {
 
 
 
-class Solution {
+class Solution3 {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         ArrayList<ArrayList<Integer>>adj=new ArrayList<>();
         for(int i=0;i<numCourses;i++){
