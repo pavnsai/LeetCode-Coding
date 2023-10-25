@@ -148,4 +148,8 @@ class Solution3 {
         return (i==numCourses)?ans:new int[0];
 
     }
+
+    public static void main(String[] args) {
+        System.out.println("Hello");
+    }
 }
