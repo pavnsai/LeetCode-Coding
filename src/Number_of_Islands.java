@@ -1,7 +1,9 @@
+package src;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
-class Solution {
+class Solution2 {
     class Pair{
         int x;
         int y;
@@ -47,5 +49,9 @@ class Solution {
             }
         }
         return counter;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Hello ");
     }
 }

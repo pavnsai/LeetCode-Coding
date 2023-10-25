@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Solution {
+class Solution5 {
     // Function to detect cycle in an undirected graph.
     public boolean bfs(int i, ArrayList<ArrayList<Integer>> adj, boolean [] visited, int parent){
         ArrayList<Integer> iter=adj.get(i);

@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.List;
 
-class Solution {
+class Solution9 {
     public int longestEqualSubarray(List<Integer> nums, int k) {
         HashMap<Integer,Integer> hm=new HashMap<>();
         int maxi=Integer.MIN_VALUE,i=0,start=0,n=nums.size(),maxIndex=-1,ans=-1;
@@ -48,7 +48,7 @@ class Solution {
 //Second Approach
 
 
-class Solution {
+class Solution10 {
     public int longestEqualSubarray(List<Integer> nums, int k) {
         int maxFreq = 0;
 
