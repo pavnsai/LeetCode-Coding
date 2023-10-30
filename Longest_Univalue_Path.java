@@ -66,7 +66,7 @@ class Solution11 {
  *     }
  * }
  */
-class Solution {
+class Solutionlon {
     class TreeInfo{
         int val;
         TreeInfo(int val){
