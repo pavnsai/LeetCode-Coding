@@ -1,9 +1,9 @@
 
-class StackWithoutLib {
+class StackUsingArray {
     int maxSize;
     int top;
     int[] stackArray;
-     StackWithoutLib(int size){
+    StackUsingArray(int size){
         maxSize=size;
         stackArray=new int[maxSize];
         top=-1;
@@ -36,7 +36,7 @@ class StackWithoutLib {
          }
      }
      public static void main(String[] args) {
-         StackWithoutLib st=new StackWithoutLib(6);
+         StackUsingArray st=new StackUsingArray(6);
          st.push(18);
          st.push(20);
 //         System.out.println(st.peek());
