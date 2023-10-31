@@ -35,6 +35,12 @@ class StackUsingArray {
              return -1;
          }
      }
+     public boolean isEmpty(){
+        return top==-1;
+     }
+     public boolean isFull(){
+        return top==maxSize-1;
+     }
      public static void main(String[] args) {
          StackUsingArray st=new StackUsingArray(6);
          st.push(18);
