@@ -32,6 +32,12 @@ class LinkedListForStack{
             return data;
         }
     }
+    public boolean isEmpty(){
+        return head==null;
+    }
+    public boolean isFull(){
+        return false;
+    }
 }
  class StackUsingLinkedList {
     LinkedListForStack st=new LinkedListForStack();
@@ -43,6 +49,12 @@ class LinkedListForStack{
     }
     public int peek(){
         return st.peek();
+    }
+    public boolean isFull(){
+        return st.isFull();
+    }
+    public boolean isEmpty(){
+        return st.isEmpty();
     }
      public static void main(String[] args) {
          StackUsingLinkedList stll=new StackUsingLinkedList();
