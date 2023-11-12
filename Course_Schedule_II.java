@@ -132,7 +132,6 @@ class Solution3 {
                 qu.add(i);
             }
         }
-        Stack<Integer> st=new Stack<>();
         int[] ans=new int[numCourses];
         int i=0;
         while(!qu.isEmpty()){
