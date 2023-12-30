@@ -61,3 +61,46 @@ public class PacificAtlanticWaterFlow {
         return ans;
     }
 }
+// Second Approach
+class Solution20 {
+    public void bfs(int i,int j,boolean[][] visit,int[][] heights,int rowMax,int colMax,int arr[]){
+        if(i==0||j==0){
+            arr[0]=1;
+            // return ;
+        }
+        if(i==rowMax-1||j==colMax-1){
+            arr[1]=1;
+            // return;
+        }
+        visit[i][j]=true;
+        if(i+1<rowMax&&!visit[i+1][j]&&heights[i+1][j]<=heights[i][j]){
+            bfs(i+1,j,visit,heights,rowMax,colMax,arr);
+        }
+        if(i-1>=0&&!visit[i-1][j]&&heights[i-1][j]<=heights[i][j]){
+            bfs(i-1,j,visit,heights,rowMax,colMax,arr);
+        }
+        if(j+1<colMax&&!visit[i][j+1]&&heights[i][j+1]<=heights[i][j]){
+            bfs(i,j+1,visit,heights,rowMax,colMax,arr);
+        }
+        if(j-1>=0&&!visit[i][j-1]&&heights[i][j-1]<=heights[i][j]){
+            bfs(i,j-1,visit,heights,rowMax,colMax,arr);
+        }
+        return;
+    }
+
+    public List<List<Integer>> pacificAtlantic(int[][] heights) {
+        List<List<Integer>> ans = new ArrayList<>();
+        for(int i=0;i<heights.length;i++){
+            for(int j=0;j<heights[i].length;j++){
+                boolean visit[][]=new boolean[heights.length][heights[i].length];
+                int arr[]=new int[2];
+                bfs(i,j,visit,heights,heights.length,heights[i].length,arr);
+                if(arr[0]==1&&arr[1]==1){
+                    // System.out.println(i+" "+j);
+                    ans.add(Arrays.asList(i,j));
+                }
+            }
+        }
+        return ans;
+    }
+}
