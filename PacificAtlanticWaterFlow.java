@@ -104,3 +104,48 @@ class Solution20 {
         return ans;
     }
 }
+
+// Efficient Approach check logic sign different
+
+class SolutionEfficient {
+    public void bfs(int i,int j,boolean[][] visit,int[][] heights,int rowMax,int colMax){
+        visit[i][j]=true;
+        if(i+1<rowMax&&!visit[i+1][j]&&heights[i+1][j]>=heights[i][j]){
+            bfs(i+1,j,visit,heights,rowMax,colMax);
+        }
+        if(i-1>=0&&!visit[i-1][j]&&heights[i-1][j]>=heights[i][j]){
+            bfs(i-1,j,visit,heights,rowMax,colMax);
+        }
+        if(j+1<colMax&&!visit[i][j+1]&&heights[i][j+1]>=heights[i][j]){
+            bfs(i,j+1,visit,heights,rowMax,colMax);
+        }
+        if(j-1>=0&&!visit[i][j-1]&&heights[i][j-1]>=heights[i][j]){
+            bfs(i,j-1,visit,heights,rowMax,colMax);
+        }
+        return;
+    }
+
+    public List<List<Integer>> pacificAtlantic(int[][] heights) {
+        List<List<Integer>> ans = new ArrayList<>();
+        int m = heights.length;
+        int n = heights[0].length;
+        boolean[][] pacificVisited = new boolean[m][n];
+        boolean[][] atlanticVisited = new boolean[m][n];
+        for(int row = 0; row < m; row++){
+            bfs(row, 0, pacificVisited,heights,m,n);
+            bfs(row, n-1, atlanticVisited,heights,m,n);
+        }
+        for(int col = 0; col < heights[0].length; col++){
+            bfs(0, col, pacificVisited,heights,m,n);
+            bfs(m-1,col, atlanticVisited,heights,m,n);
+        }
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(pacificVisited[i][j] && atlanticVisited[i][j]){
+                    ans.add(Arrays.asList(i,j));
+                }
+            }
+        }
+        return ans;
+    }
+}
