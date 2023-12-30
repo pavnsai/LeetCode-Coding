@@ -15,7 +15,7 @@ public class ReverseLinkedList {
             headTemp=temp2;
         }
         return temp;
-// Second approach
+        // Second approach
         if(head==null||head.next==null)
             return head;
         ListNode tempDum=reverseList(head.next);
