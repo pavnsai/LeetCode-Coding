@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class SerializeAndDeserializeBinaryTree {
     /**
      * Definition for a binary tree node.
@@ -51,3 +54,84 @@ public class SerializeAndDeserializeBinaryTree {
 // Codec deser = new Codec();
 // TreeNode ans = deser.deserialize(ser.serialize(root));
 }
+
+
+//Second Approach usign Level order traversal
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+ class CodecQueue {
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        if(root==null){
+            return ",";
+        }
+        StringBuilder st=new StringBuilder();
+        Queue<TreeNode> qu=new LinkedList<>();
+        qu.add(root);
+        st.append(root.val).append(",");
+        while(!qu.isEmpty()){
+            TreeNode temp=qu.poll();
+            if(temp.left!=null){
+                qu.add(temp.left);
+                st.append(temp.left.val).append(",");
+            }else{
+                st.append("#").append(",");
+            }
+            if(temp.right!=null){
+                qu.add(temp.right);
+                st.append(temp.right.val).append(",");
+            }else{
+                st.append("#").append(",");
+            }
+        }
+        return st.toString();
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        // System.out.println(data);
+        String[] splitData = data.split(",");
+        if(splitData.length==0){
+            return null;
+        }
+        Queue<TreeNode> qu=new LinkedList<>();
+        TreeNode root=new TreeNode(Integer.valueOf(splitData[0]));
+        int i=1;
+        qu.add(root);
+        while(!qu.isEmpty()){
+            TreeNode temp=qu.poll();
+            if(splitData[i].equals("#")){
+                temp.left=null;
+            }else{
+                TreeNode leftNode=new TreeNode(Integer.valueOf(splitData[i]));
+                qu.add(leftNode);
+                temp.left=leftNode;
+            }
+            i++;
+            // temp=qu.poll();
+            if(splitData[i].equals("#")){
+                temp.right=null;
+            }else{
+                TreeNode rightNode=new TreeNode(Integer.valueOf(splitData[i]));
+                qu.add(rightNode);
+                temp.right=rightNode;
+            }
+            i++;
+        }
+        return root;
+    }
+}
+
+// Your Codec object will be instantiated and called as such:
+// Codec ser = new Codec();
+// Codec deser = new Codec();
+// TreeNode ans = deser.deserialize(ser.serialize(root));

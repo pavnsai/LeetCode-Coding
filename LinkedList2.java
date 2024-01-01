@@ -6,7 +6,7 @@ class Node{
         next=null;
     }
 }
-public class LinkedList {
+public class LinkedList2 {
     Node head;
     public Node insert(Node list,int data){
         Node temp=new Node(data);
@@ -45,7 +45,7 @@ public class LinkedList {
     }
     public static void main(String[] args) {
         System.out.println("Hello");
-        LinkedList li=new LinkedList();
+        LinkedList2 li=new LinkedList2();
         Node list=li.insert(null,18);
 //        li.print(list);
         li.insert(list,18);
