@@ -61,3 +61,55 @@ class Solutionlist {
         return res;
     }
 }
+
+// Bucket SOrt Efficicent
+class SolutionBKTSort {
+    public int[] topKFrequent(int[] nums, int k) {
+        // Get the length of the input array
+        int n = nums.length;
+
+        // Create an array of lists to store elements based on their frequency
+        List<Integer> ff[] = new List[n+1];
+
+        // Initialize each list in the array
+        for(int i=0; i<=n; i++){
+            ff[i] = new ArrayList<>();
+        }
+
+        // Create an array to store the final top K frequent elements
+        int ans[] = new int[k];
+
+        // Create a hash map to store frequencies of elements
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        // Calculate frequencies and store them in the hash map
+        for(int i: nums){
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+
+        // Populate the frequency array ff with elements based on their frequency
+        for(int key: map.keySet()){
+            int val = map.get(key);
+            ff[val].add(key);
+        }
+
+        // Index to track the position in the ans array
+        int idx = 0;
+
+        // Traverse through the frequency array in reverse order and fill ans
+        for(int i=n; i>=0 && idx<k; i--){
+            // Check if the current frequency list is not empty
+            if(!ff[i].isEmpty()){
+                // Iterate through the elements with the current frequency
+                for(int e: ff[i]){
+                    ans[idx++] = e; // Add the element to the ans array
+                    if(idx >= k){
+                        break; // Stop if we have filled up the ans array
+                    }
+                }
+            }
+        }
+
+        return ans; // Return the final array containing top K frequent elements
+    }
+}
