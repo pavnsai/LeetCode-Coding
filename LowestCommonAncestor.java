@@ -106,7 +106,7 @@ class LowestCommonAncestorEfficicent {
         TreeNode rt=lowestCommonAncestor(root.right,p,q);
         // if(lt==null&&rt==null){
         //     return null;
-        // }else // this can be removed
+        // }else // this if loop can be removed
         if(lt==null){
             return rt;
         }else if(rt==null){
