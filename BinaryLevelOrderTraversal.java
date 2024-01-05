@@ -33,3 +33,41 @@ public class BinaryLevelOrderTraversal {
         return li;
     }
 }
+
+// Second approach using recursion
+class BinaryLevelOrderTraversalrecursion {
+    List<Integer> levellist=new ArrayList<>();
+    public int height(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int lh=1+height(root.left);
+        int rh=1+height(root.right);
+        return Math.max(lh,rh);
+    }
+    public void level(TreeNode root,int level){
+        if(root==null){
+            return;
+        }
+        if(level==1){
+            levellist.add(root.val);
+        }else if(level>1){
+            level(root.left,level-1);
+            level(root.right,level-1);
+        }
+        return;
+    }
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> li=new ArrayList<>();
+        if(root==null){
+            return li;
+        }
+        int hght=height(root);
+        for(int i=1;i<=hght;i++){
+            level(root,i);
+            li.add(levellist);
+            levellist=new ArrayList<>();
+        }
+        return li;
+    }
+}
