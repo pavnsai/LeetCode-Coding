@@ -102,7 +102,7 @@ class LowestCommonAncestorEfficicent {
         if(root==p||root==q){
             return root;
         }
-        // above loops can be combined
+        // above if loops can be combined
         TreeNode lt=lowestCommonAncestor(root.left,p,q);
         TreeNode rt=lowestCommonAncestor(root.right,p,q);
         // if(lt==null&&rt==null){
