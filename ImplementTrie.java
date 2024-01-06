@@ -99,3 +99,60 @@ class Trie {
  * boolean param_2 = obj.search(word);
  * boolean param_3 = obj.startsWith(prefix);
  */
+
+
+// More Efficient
+class TrieEfficient {
+    TrieEfficient links[];
+    boolean flag = false;
+    public TrieEfficient() {
+        links = new TrieEfficient[26];
+    }
+
+    public void insert(String word) {
+        TrieEfficient next_node = this;
+        for (int i = 0; i < word.length(); i++) {
+            int idx = word.charAt(i) - 'a';
+            if (next_node.links[idx] == null) {
+                TrieEfficient next = new TrieEfficient();
+                next_node.links[idx] = next;
+                next_node = next;
+            } else {
+                next_node = next_node.links[idx];
+            }
+        }
+        next_node.flag = true;
+    }
+
+    public boolean search(String word) {
+        TrieEfficient next_node = this;
+        for (int i = 0; i < word.length(); i++) {
+            int idx = word.charAt(i) - 'a';
+            next_node = next_node.links[idx];
+            if (next_node == null) {
+                return false;
+            }
+        }
+        return next_node.flag;
+    }
+
+    public boolean startsWith(String prefix) {
+        TrieEfficient next_node = this;
+        for (int i = 0; i < prefix.length(); i++) {
+            int idx = prefix.charAt(i) - 'a';
+            next_node = next_node.links[idx];
+            if (next_node == null) {
+                return false;
+            }
+        }
+        return (next_node == null) ? false : true;
+    }
+}
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */
