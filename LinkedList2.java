@@ -47,13 +47,10 @@ public class LinkedList2 {
         System.out.println("Hello");
         LinkedList2 li=new LinkedList2();
         Node list=li.insert(null,18);
-//        li.print(list);
         li.insert(list,18);
         li.insert(list,20);
-//        li.print(list);
         li.insert(list,18);
         li.insert(list,18);
-//        li.print(list);
         li.delete(list,18);
         li.print(li.head);
     }
