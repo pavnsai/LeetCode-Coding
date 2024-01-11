@@ -118,14 +118,7 @@ class Solution3 {
         Queue<Integer> qu=new LinkedList<>();
         for(int i=0;i<prerequisites.length;i++){
             indegree[prerequisites[i][0]]++;
-            // if(adj.contains(prerequisites[i][1])){
-            //     // ArrayList<Integer>temp=adj.get(prerequisites[i][1]);
-            //     adj[prerequisites[i][1]].add(prerequisites[i][0]);
-            // }else{
-            //     ArrayList<Integer>temp=new ArrayList<>();
-            //     temp.add(prerequisites[i][0]);
             adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
-            // }
         }
         for(int i=0;i<numCourses;i++){
             if(indegree[i]==0){
