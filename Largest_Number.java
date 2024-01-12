@@ -8,7 +8,7 @@ class SolutionLargestNumber {
         }
         Arrays.sort(arr,(a, b)-> {
             String s1 = a + "" + b;
-            String s2 = b + "" + b;
+            String s2 = b + "" + a;
             return s2.compareTo(s1);
         });
         String ans="";
