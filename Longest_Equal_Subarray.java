@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.List;
-
+// TLE
 class Solution9 {
     public int longestEqualSubarray(List<Integer> nums, int k) {
         HashMap<Integer,Integer> hm=new HashMap<>();

@@ -14,7 +14,7 @@ public class ReverseLinkedList {
             temp=headTemp;
             headTemp=temp2;
         }
-        return temp;
+//        return temp;
         // Second approach
         if(head==null||head.next==null)
             return head;
