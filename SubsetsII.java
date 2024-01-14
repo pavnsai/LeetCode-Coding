@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class SubsetsII {
     public void check(int idx, int n, int[] nums, ArrayList<Integer> temp, List<List<Integer>> ans){
@@ -20,5 +18,28 @@ public class SubsetsII {
         Arrays.sort(nums);
         check(0,nums.length,nums,new ArrayList<Integer>(),ans);
         return ans;
+    }
+}
+
+// brute force
+class SubsetsIIBruteForce {
+    public void check(int idx, int n, int[] nums, ArrayList<Integer> temp, Set<List<Integer>> ans){
+        if(idx==n){
+            ans.add(new ArrayList<>(temp));
+            return;
+        }
+        temp.add(nums[idx]);
+        check(idx+1,n,nums,temp,ans);
+        temp.remove(temp.size()-1);
+        check(idx+1,n,nums,temp,ans);
+
+    }
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Set<List<Integer>> ans=new HashSet<>();
+        Arrays.sort(nums);
+        check(0,nums.length,nums,new ArrayList<Integer>(),ans);
+        List<List<Integer>>result=new ArrayList<>();
+        result.addAll(ans);
+        return result;
     }
 }
