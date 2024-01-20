@@ -1,6 +1,6 @@
 import java.util.ArrayList;
-
-public class MaximumSumOfNonAdjacentElements {
+//TLE 1
+ class MaximumSumOfNonAdjacentElementsTLE1 {
     public static void sum(int idx, ArrayList<Integer> nums,
                            int n, int sum, int arr[]){
         if(idx>=n){
@@ -13,8 +13,25 @@ public class MaximumSumOfNonAdjacentElements {
     public static int maximumNonAdjacentSum(ArrayList<Integer> nums) {
         // Write your code here.
         int arr[]={Integer.MIN_VALUE};
-        int ans[]=new int[nums.size()];
         sum(0,nums,nums.size(),0,arr);
         return arr[0];
     }
+}
+//TLE2
+ class MaximumSumOfNonAdjacentElementsTLE2 {
+     public static int sum(int idx,ArrayList<Integer> nums,
+                           int n,int arr[]){
+         if(idx>=n){
+             return 0;
+         }
+         int pick=nums.get(idx)+sum(idx+2,nums,n,arr);
+         int notPick=sum(idx+1,nums,n,arr);
+         return Math.max(pick,notPick);
+     }
+     public static int maximumNonAdjacentSum(ArrayList<Integer> nums) {
+         // Write your code here.
+         int arr[]={Integer.MIN_VALUE};
+         int ans[]=new int[nums.size()];
+         return sum(0,nums,nums.size(),arr);
+     }
 }
