@@ -14,6 +14,8 @@ public class HouseRobber {
     }
 }
 // No Space as there are two variables
+// and if there is case that first and last elements considered neighbors. in other words first and last cant be robbed
+// so take max(leaving first element, leaving last element)
 class HouseRobberNoSpace {
     public int rob(int[] nums) {
         int ans[]=new int[nums.length];
