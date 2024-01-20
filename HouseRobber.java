@@ -13,7 +13,7 @@ public class HouseRobber {
         return ans[nums.length-1];
     }
 }
-// No Space
+// No Space as there are two variables
 class HouseRobberNoSpace {
     public int rob(int[] nums) {
         int ans[]=new int[nums.length];
