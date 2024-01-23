@@ -75,3 +75,29 @@ class UniquePathsAnotherMemoization {
     }
 
 }
+
+class UniquePathsAnotherMemoization2 {
+    public int dfs(int a, int b, int ans[][]) {
+        if (a == 0 && b == 0) {
+            return 1;
+        }
+        if (a < 0 || b < 0) {
+            return 0;
+        }
+        if(ans[a][b]!=-1){
+            return ans[a][b];
+        }
+        int up = dfs(a - 1, b, ans);
+        int left = dfs(a, b - 1, ans);
+        ans[a][b] = up + left;
+        return ans[a][b];
+    }
+
+    public int uniquePaths(int m, int n) {
+        int ans[][] = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            Arrays.fill(ans[i], -1);
+        }
+        return dfs(m - 1, n - 1, ans);
+    }
+}
