@@ -112,6 +112,7 @@ class UniquePathsDP {
         }
         for(int i=1;i<m;i++){
             for(int j=1;j<n;j++){
+                //just way to write, not correct login that commented
                 // int l=0,r=0;
                 // if(i-1<0){
                 //     l=0;
