@@ -1,5 +1,6 @@
 import java.util.Arrays;
 //check this it chefcked for element 0 also so waited till it checks all indexes
+// if you dont want to consider zeros multiply 2^numberofzeroes x answer but not working
 public class CountSubsetsWithSumK {
     static int mod=(int)Math.pow(10,9)+7;
     public static int check(int idx,int num[],int sum,int[][] ans){
