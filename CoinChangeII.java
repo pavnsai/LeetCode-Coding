@@ -70,3 +70,31 @@ class CoinChangeIIDP {
         return ans[n-1][amount];
     }
 }
+
+//Dp Optimized
+
+class CoinChangeIIDPOptimized {
+    public int change(int amount, int[] coins) {
+        int n=coins.length;
+        int ans[][]=new int[n][amount+1];
+        int curr[]=new int[amount+1];
+        int prev[]=new int[amount+1];
+        for(int i=0;i<=amount;i++){
+            if(i%coins[0]==0){
+                prev[i]=1;
+            }
+        }
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=amount;j++){
+                int take=0;
+                if(j-coins[i]>=0){
+                    take=curr[j-coins[i]];
+                }
+                int notTake=prev[j];
+                curr[j]=take+notTake;
+            }
+            prev=Arrays.copyOf(curr,curr.length);
+        }
+        return prev[amount];
+    }
+}
