@@ -71,7 +71,7 @@ class CoinChangeIIDP {
     }
 }
 
-//Dp Optimized
+//Dp Optimized Space
 
 class CoinChangeIIDPOptimized {
     public int change(int amount, int[] coins) {
