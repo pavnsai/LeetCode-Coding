@@ -66,3 +66,28 @@ class RodCuttingProblemDP {
         return ans[n-1][n];
     }
 }
+
+//DP Optimized
+class RodCuttingProblemDPOptimized {
+    public static int cutRod(int price[], int n) {
+        // Write your code here.
+        int curr[]=new int[n+1];
+        int prev[]=new int[n+1];
+        for(int i=0;i<=n;i++){
+            prev[i]=i*price[0];
+        }
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=n;j++){
+                int take=Integer.MIN_VALUE;
+                if(j>=i+1){
+                    take=price[i]+curr[j-(i+1)];
+                }
+                int notTake=prev[j];
+                curr[j]=Math.max(take,notTake);
+            }
+            prev=Arrays.copyOf(curr,curr.length);
+        }
+        return prev[n];
+    }
+
+}
