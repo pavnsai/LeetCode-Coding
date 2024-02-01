@@ -91,3 +91,34 @@ class CoinChangeDP {
         return (dp[n-1][amount]!=Integer.MAX_VALUE)?dp[n-1][amount]:-1;
     }
 }
+
+//DP
+class CoinChangeDPOptimized {
+    public int coinChange(int[] coins, int amount) {
+        int n=coins.length;
+        int curr[]=new int[amount+1];
+        int prev[]=new int[amount+1];
+        for(int i=0;i<=amount;i++){
+            if(i%coins[0]==0){
+                prev[i]=i/coins[0];
+            }else{
+                prev[i]=Integer.MAX_VALUE;
+            }
+        }
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=amount;j++){
+                int take=Integer.MAX_VALUE;
+                if(j>=coins[i]){
+                    take=curr[j-coins[i]];
+                }
+                if(take!=Integer.MAX_VALUE){
+                    take=take+1;
+                }
+                int notTake=prev[j];
+                curr[j]=Math.min(take,notTake);
+            }
+            prev=Arrays.copyOf(curr,curr.length);
+        }
+        return (prev[amount]!=Integer.MAX_VALUE)?prev[amount]:-1;
+    }
+}
