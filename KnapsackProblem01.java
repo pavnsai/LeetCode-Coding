@@ -76,3 +76,28 @@ class KnapsackProblem01DP {
         return ans[n-1][W];
     }
 }
+
+class KnapsackProblem01DPOptimized {
+    static int knapSack(int W, int wt[], int val[], int n)
+    {
+        // your code here
+        int prev[]=new int[W+1];
+        int curr[]=new int[W+1];
+        for(int j=wt[0];j<=W;j++){
+            prev[j]=val[0];
+        }
+
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=W;j++){
+                int take=Integer.MIN_VALUE;
+                if(wt[i]<=j){
+                    take=val[i]+prev[j-wt[i]];
+                }
+                int notTake=prev[j];
+                curr[j]=Math.max(take,notTake);
+            }
+            prev = Arrays.copyOf(curr, curr.length);
+        }
+        return prev[W];
+    }
+}
