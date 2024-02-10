@@ -74,3 +74,28 @@ class DistinctSubsequencesDP {
         return ans[m][n];
     }
 }
+
+//DP Optimized
+class DistinctSubsequencesDP2 {
+    public int numDistinct(String s1, String s2) {
+        int m=s1.length(),n=s2.length();
+        int prev[]=new int[n+1];
+        int curr[]=new int[n+1];
+        for(int i=0;i<n;i++){
+            prev[i]=0;
+        }
+        prev[0]=1;
+        curr[0]=1;
+        for(int i=1;i<=m;i++){
+            for(int j=1;j<=n;j++){
+                if(s1.charAt(i-1)==s2.charAt(j-1)){
+                    curr[j]=prev[j-1]+prev[j];
+                }else{
+                    curr[j]=prev[j];
+                }
+            }
+            prev=Arrays.copyOf(curr,curr.length);
+        }
+        return prev[n];
+    }
+}
