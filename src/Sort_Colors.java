@@ -1,4 +1,6 @@
-class Solution {
+package src;
+
+class SolutionSortColors {
     public void swap(int[] nums,int a,int b){
         int temp=nums[a];
         nums[a]=nums[b];
