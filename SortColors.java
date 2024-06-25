@@ -7,9 +7,9 @@ public class SortColors {
         nums[b]=temp;
     }
     public void sortColors(int[] nums) {
-        Arrays.sort(nums);
+//        Arrays.sort(nums);
         int l=0,r=nums.length-1,m=0;
-        while(m<r){
+        while(m<=r){
             if(nums[m]==0){
                 swap(nums,m,l);
                 l++;

@@ -2,13 +2,13 @@ import java.util.ArrayList;
 
 class Solution5 {
     // Function to detect cycle in an undirected graph.
-    public boolean bfs(int i, ArrayList<ArrayList<Integer>> adj, boolean [] visited, int parent){
+    public boolean dfs(int i, ArrayList<ArrayList<Integer>> adj, boolean [] visited, int parent){
         ArrayList<Integer> iter=adj.get(i);
         for(Integer num:iter){
             if(num!=parent){
                 if(!visited[num]){
                     visited[num]=true;
-                    if(bfs(num,adj,visited,i)){
+                    if(dfs(num,adj,visited,i)){
                         return true;
                     }
                 }else{
@@ -27,7 +27,7 @@ class Solution5 {
         for(int i=0;i<V;i++){
             if(!visited[i]){
                 visited[i]=true;
-                if(bfs(i,adj,visited,-1)){
+                if(dfs(i,adj,visited,-1)){
                     return true;
                 }
             }

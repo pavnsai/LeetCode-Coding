@@ -50,7 +50,87 @@ public class LowestCommonAncestor {
         return null;
     }
 }
+//BruteForce
+class LowestCommonAncestorUsingArrayList {
+    public void dfs(TreeNode root, TreeNode p, ArrayList<TreeNode> li, boolean arr[]){
+        if(root==null){
+            return;
+        }
+        if(!arr[0]){
+            li.add(root);
+        }
+        if(root==p){
+            arr[0]=true;
+            return;
+        }
+        dfs(root.left,p,li,arr);
+        dfs(root.right,p,li,arr);
+        if(!arr[0]){
+            li.remove(li.size()-1);
+        }
+    }
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        ArrayList<TreeNode> plist=new ArrayList<>();
+        ArrayList<TreeNode> qlist=new ArrayList<>();
+        TreeNode ans=null;
+        boolean arr[]=new boolean[]{false};
+        dfs(root,p,plist,arr);
+        arr[0]=false;
+        dfs(root,q,qlist,arr);
+        for(TreeNode temp:plist){
+            if(qlist.contains(temp)){
+                ans=temp;
+            }
+        }
+        return ans;
+    }
+}
 
+//BruteForce
+class LowestCommonAncestorUsingArrayList2 {
+    public void dfs(TreeNode root, TreeNode p, TreeNode q, ArrayList<TreeNode> plist,
+                    ArrayList<TreeNode> qlist, boolean arr[]){
+        if(root==null){
+            return;
+        }
+        if(!arr[0]){
+            plist.add(root);
+        }
+        if(!arr[1]){
+            qlist.add(root);
+        }
+        if(root==p){
+            arr[0]=true;
+            // return;
+        }
+        if(root==q){
+            arr[1]=true;
+            // return;
+        }
+        dfs(root.left,p,q,plist,qlist,arr);
+        dfs(root.right,p,q,plist,qlist,arr);
+        if(!arr[0]){
+            plist.remove(plist.size()-1);
+        }
+        if(!arr[1]){
+            qlist.remove(qlist.size()-1);
+        }
+    }
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        ArrayList<TreeNode> plist=new ArrayList<>();
+        ArrayList<TreeNode> qlist=new ArrayList<>();
+        TreeNode ans=null;
+        boolean arr[]=new boolean[]{false,false};
+        dfs(root,p,q,plist,qlist,arr);
+        for(TreeNode temp:plist){
+            if(qlist.contains(temp)){
+                ans=temp;
+            }
+        }
+        return ans;
+    }
+
+}
 // Second BruteForce
 class LowestCommonAncestorBruteForce {
     public boolean path(TreeNode root, TreeNode p, List<TreeNode> li){
